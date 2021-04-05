@@ -1,4 +1,5 @@
-use std::fs;
+use std::{fs, hash::Hash};
+use std::collections::HashMap;
 
 fn main() {
     // get all arguments sent by user
@@ -16,5 +17,18 @@ fn main() {
     let contents = format!("{}\t{}\n", key, value);
     fs::write("kv.db", contents).unwrap();
 
-    
+    let database = DataBase::new();
+}
+
+struct DataBase {
+    map: HashMap<String, String>,
+
+}
+
+impl DataBase {
+    fn new() -> DataBase {
+        DataBase {
+            map: HashMap::new(),
+        }
+    }
 }
